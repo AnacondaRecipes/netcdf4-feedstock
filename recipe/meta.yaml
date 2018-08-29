@@ -29,10 +29,9 @@ requirements:
   run:
     - python
     - setuptools
+    # run_exports will take care of libnetcdf and hdf5
     - {{ pin_compatible('numpy') }}
     - cftime
-    - hdf5
-    - libnetcdf
 
 test:
   imports:
