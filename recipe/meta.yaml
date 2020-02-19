@@ -1,4 +1,4 @@
-{% set version = "1.4.2" %}
+{% set version = "1.5.3" %}
 
 package:
   name: netcdf4
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/n/netCDF4/netCDF4-{{version}}.tar.gz
-  sha256: b934af350459cf9041bcdf5472e2aa56ed7321c018d918e9f325ec9a1f9d1a30
+  sha256: 2a3ca855848f4bbf07fac366da77a681fcead18c0a8813d91d46302f562dc3be
 
 build:
   number: 0
