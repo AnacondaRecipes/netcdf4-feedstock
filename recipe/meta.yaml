@@ -19,16 +19,16 @@ requirements:
   build:
     - {{ compiler('c') }}
   host:
-    - python
+    - python >=3.6
     - pip
-    - numpy
     - cython >=0.19
     - cftime
     - hdf5
     - libnetcdf
+    - setuptools >=18.0
+    - wheel
   run:
-    - python
-    - setuptools
+    - python >=3.6
     - {{ pin_compatible('numpy') }}
     - cftime
     - hdf5
@@ -44,9 +44,10 @@ test:
     - nc3tonc4 -h
 
 about:
-  home: http://github.com/Unidata/netcdf4-python
-  license: OSI Approved and MIT
-  license_file: COPYING
+  home: http://unidata.github.io/netcdf4-python/
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
   summary: 'Provides an object-oriented python interface to the netCDF version 4 library.'
   dev_url: https://github.com/Unidata/netcdf4-python
   doc_url: https://unidata.github.io/netcdf4-python
