@@ -1,4 +1,4 @@
-{% set version = "1.5.6" %}
+{% set version = "1.5.7" %}
 
 package:
   name: netcdf4
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/n/netCDF4/netCDF4-{{version}}.tar.gz
-  sha256: 7577f4656af8431b2fa6b6797acb45f81fa1890120e9123b3645e14765da5a7c
+  sha256: d145f9c12da29da3922d8b8aafea2a2a89501bcb28a219a46b7b828b57191594
 
 build:
   number: 0
@@ -19,16 +19,16 @@ requirements:
   build:
     - {{ compiler('c') }}
   host:
-    - python
+    - python >=3.6
     - pip
-    - numpy
     - cython >=0.19
     - cftime
     - hdf5
     - libnetcdf
+    - setuptools >=18.0
+    - wheel
   run:
-    - python
-    - setuptools
+    - python >=3.6
     - {{ pin_compatible('numpy') }}
     - cftime
     - hdf5
@@ -44,9 +44,10 @@ test:
     - nc3tonc4 -h
 
 about:
-  home: http://github.com/Unidata/netcdf4-python
-  license: OSI Approved and MIT
-  license_file: COPYING
+  home: http://unidata.github.io/netcdf4-python/
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
   summary: 'Provides an object-oriented python interface to the netCDF version 4 library.'
   dev_url: https://github.com/Unidata/netcdf4-python
   doc_url: https://unidata.github.io/netcdf4-python
