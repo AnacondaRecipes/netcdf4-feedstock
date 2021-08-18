@@ -19,8 +19,9 @@ requirements:
   build:
     - {{ compiler('c') }}
   host:
-    - python >=3.6
+    - python
     - pip
+    - numpy
     - cython >=0.19
     - cftime
     - hdf5
@@ -28,7 +29,8 @@ requirements:
     - setuptools >=18.0
     - wheel
   run:
-    - python >=3.6
+    - python
+    - setuptools
     - {{ pin_compatible('numpy') }}
     - cftime
     - hdf5
