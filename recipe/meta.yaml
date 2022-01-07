@@ -5,8 +5,8 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/n/netCDF4/netCDF4-{{version}}.tar.gz
-  sha256: d145f9c12da29da3922d8b8aafea2a2a89501bcb28a219a46b7b828b57191594
+  url: https://github.com/Unidata/netcdf4-python/archive/v{{version}}rel.tar.gz
+  sha256: 5673896d1d39d591423abbd4856270cc901b88bdbeaf4ab293bfd7cfd77fe8d5
 
 build:
   number: 0
@@ -35,7 +35,7 @@ requirements:
     - {{ pin_compatible('numpy') }}
     - cftime
     - hdf5
-    - libnetcdf
+    - libnetcdf <4.8.0
 
 test:
   imports:
