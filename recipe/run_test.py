@@ -11,8 +11,7 @@ os.environ['TEMP'] = os.environ['PREFIX']
 #    # Compiled with cython.
 #    assert nc.filepath() == url
 
-
-url = 'http://geoport.whoi.edu/thredds/dodsC/usgs/vault0/models/tides/vdatum_gulf_of_maine/adcirc54_38_orig.nc'
-
-with netCDF4.Dataset(url) as nc:
-    nc['tidenames'][:]
+## (tkoch, 2022-01-10) disabled, server is unreachable
+#url = 'http://geoport.whoi.edu/thredds/dodsC/usgs/vault0/models/tides/vdatum_gulf_of_maine/adcirc54_38_orig.nc'
+#with netCDF4.Dataset(url) as nc:
+#    nc['tidenames'][:]
