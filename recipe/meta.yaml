@@ -35,7 +35,8 @@ requirements:
     - {{ pin_compatible('numpy') }}
     - cftime
     - hdf5
-    - libnetcdf <4.8.0
+    - libnetcdf <4.8.0  # [not (osx and arm64)]
+    - libnetcdf  # [osx and arm64]
 
 test:
   imports:
