@@ -1,0 +1,3 @@
+libnetcdf:
+  - 4.8  # [not (osx and arm64)]
+  - 4.8  # [osx and arm64]
