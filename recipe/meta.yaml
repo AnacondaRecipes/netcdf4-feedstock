@@ -9,8 +9,7 @@ source:
   sha256: 5673896d1d39d591423abbd4856270cc901b88bdbeaf4ab293bfd7cfd77fe8d5
 
 build:
-  number: 0
-  # trigger: 1
+  number: 1
   skip: True  # [s390x]
   entry_points:
     - ncinfo = netCDF4.utils:ncinfo
@@ -29,7 +28,7 @@ requirements:
     - cython >=0.19
     - cftime
     - hdf5
-    - libnetcdf
+    - libnetcdf >=4.8.1
     - setuptools >=18.0
     - wheel
   run:
@@ -38,7 +37,7 @@ requirements:
     - {{ pin_compatible('numpy') }}
     - cftime
     - hdf5
-    - libnetcdf
+    - {{ pin_compatible('libnetcdf', min_pin='x.x', max_pin='x.x') }}
 
 test:
   imports:
