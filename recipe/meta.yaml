@@ -5,15 +5,18 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/n/netCDF4/netCDF4-{{version}}.tar.gz
-  sha256: d145f9c12da29da3922d8b8aafea2a2a89501bcb28a219a46b7b828b57191594
+  url: https://github.com/Unidata/netcdf4-python/archive/v{{version}}rel.tar.gz
+  sha256: 5673896d1d39d591423abbd4856270cc901b88bdbeaf4ab293bfd7cfd77fe8d5
 
 build:
-  number: 0
+  number: 1
+  skip: True  # [s390x]
   entry_points:
     - ncinfo = netCDF4.utils:ncinfo
     - nc4tonc3 = netCDF4.utils:nc4tonc3
     - nc3tonc4 = netCDF4.utils:nc3tonc4
+  ignore_run_exports:
+    - hdf5
 
 requirements:
   build:
@@ -25,7 +28,7 @@ requirements:
     - cython >=0.19
     - cftime
     - hdf5
-    - libnetcdf
+    - libnetcdf >=4.8.1
     - setuptools >=18.0
     - wheel
   run:
@@ -34,7 +37,7 @@ requirements:
     - {{ pin_compatible('numpy') }}
     - cftime
     - hdf5
-    - libnetcdf
+    - {{ pin_compatible('libnetcdf', min_pin='x.x', max_pin='x.x') }}
 
 test:
   imports:
