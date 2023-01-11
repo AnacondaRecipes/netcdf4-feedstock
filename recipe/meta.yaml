@@ -1,4 +1,4 @@
-{% set version = "1.5.7" %}
+{% set version = "1.6.2" %}
 
 package:
   name: netcdf4
@@ -6,10 +6,10 @@ package:
 
 source:
   url: https://github.com/Unidata/netcdf4-python/archive/v{{version}}rel.tar.gz
-  sha256: 5673896d1d39d591423abbd4856270cc901b88bdbeaf4ab293bfd7cfd77fe8d5
+  sha256: f216defd771a6bc143d99d060793813b7e29d6907455127301ab8983592b780c
 
 build:
-  number: 1
+  number: 0
   skip: True  # [s390x]
   entry_points:
     - ncinfo = netCDF4.utils:ncinfo
@@ -25,15 +25,14 @@ requirements:
     - python
     - pip
     - numpy
-    - cython >=0.19
+    - cython
     - cftime
     - hdf5
-    - libnetcdf >=4.8.1
-    - setuptools >=18.0
+    - libnetcdf
+    - setuptools
     - wheel
   run:
     - python
-    - setuptools
     - {{ pin_compatible('numpy') }}
     - cftime
     - hdf5
@@ -49,11 +48,16 @@ test:
     - nc3tonc4 -h
 
 about:
-  home: http://unidata.github.io/netcdf4-python/
+  home: https://unidata.github.io/netcdf4-python/
   license: MIT
   license_family: MIT
   license_file: LICENSE
-  summary: 'Provides an object-oriented python interface to the netCDF version 4 library.'
+  summary: netcdf4-python is a Python interface to the netCDF C library.
+  description: |
+    netCDF version 4 has many features not found in earlier versions of the library and is 
+    implemented on top of HDF5. This module can read and write files in both the new netCDF 4 
+    and the old netCDF 3 format, and can create files that are readable by HDF5 clients. 
+    The API modelled after Scientific.IO.NetCDF, and should be familiar to users of that module.
   dev_url: https://github.com/Unidata/netcdf4-python
   doc_url: https://unidata.github.io/netcdf4-python
 

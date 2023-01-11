@@ -8,7 +8,6 @@ export NETCDF4_DIR="${PREFIX}"
 export HDF5_DIR="${PREFIX}"
 
 ${PYTHON} -m pip install \
-    --use-feature=in-tree-build \
     --no-binary :all: \
     --no-deps \
     --ignore-installed .
