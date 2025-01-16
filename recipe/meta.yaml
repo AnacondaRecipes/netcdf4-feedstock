@@ -1,4 +1,4 @@
-{% set version = "1.7.1" %}
+{% set version = "1.7.2" %}
 
 package:
   name: netcdf4
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://github.com/Unidata/netcdf4-python/archive/v{{version}}rel.tar.gz
-  sha256: 42c189fb646a2993f15791b3835797389d7d0791de033ed4347955c673194605
+  sha256: cce7d42a83f84b6ce6288bb2fb171d5ffd294f1a1ba2650807d238ae961e9629
 
 build:
   number: 0
@@ -27,7 +27,7 @@ requirements:
     - numpy 2
     - cython
     - cftime
-    - hdf5
+    - hdf5  {{ hdf5 }}
     - libnetcdf
     - setuptools
     - wheel
