@@ -7,6 +7,8 @@ package:
 source:
   url: https://github.com/Unidata/netcdf4-python/archive/v{{version}}rel.tar.gz
   sha256: cce7d42a83f84b6ce6288bb2fb171d5ffd294f1a1ba2650807d238ae961e9629
+  patches:  # [win]
+    - patches/00_fix_win_test.patch  # [win]
 
 build:
   number: 0
@@ -21,6 +23,7 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
+    - m2-patch  # [win]
   host:
     - python
     - pip
