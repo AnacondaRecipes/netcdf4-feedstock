@@ -1,4 +1,4 @@
-{% set version = "1.6.2" %}
+{% set version = "1.7.2" %}
 
 package:
   name: netcdf4
@@ -6,7 +6,9 @@ package:
 
 source:
   url: https://github.com/Unidata/netcdf4-python/archive/v{{version}}rel.tar.gz
-  sha256: f216defd771a6bc143d99d060793813b7e29d6907455127301ab8983592b780c
+  sha256: cce7d42a83f84b6ce6288bb2fb171d5ffd294f1a1ba2650807d238ae961e9629
+  patches:  # [win]
+    - patches/00_fix_win_test.patch  # [win]
 
 build:
   number: 0
@@ -21,13 +23,14 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
+    - m2-patch  # [win]
   host:
     - python
     - pip
-    - numpy
+    - numpy 2
     - cython
     - cftime
-    - hdf5
+    - hdf5  {{ hdf5 }}
     - libnetcdf
     - setuptools
     - wheel
@@ -35,17 +38,26 @@ requirements:
     - python
     - {{ pin_compatible('numpy') }}
     - cftime
+    - certifi
     - hdf5
     - {{ pin_compatible('libnetcdf', min_pin='x.x', max_pin='x.x') }}
 
 test:
+  source_files:
+    - test
   imports:
     - netCDF4
     - cftime
+  requires:
+    - cython
+    - pip
+    - packaging
   commands:
+    - pip check
     - ncinfo -h
     - nc4tonc3 -h
     - nc3tonc4 -h
+    - cd test && python run_all.py
 
 about:
   home: https://unidata.github.io/netcdf4-python/

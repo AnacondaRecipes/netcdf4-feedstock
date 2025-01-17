@@ -8,5 +8,5 @@ echo HDF5_incdir = %LIBRARY_INC% >> %SITECFG%
 echo netCDF4_libdir = %LIBRARY_LIB% >> %SITECFG%
 echo netCDF4_incdir = %LIBRARY_INC% >> %SITECFG%
 
-"%PYTHON%" -m pip install --no-deps --ignore-installed .
+"%PYTHON%" -m pip install --no-deps --no-build-isolation --ignore-installed .
 if errorlevel 1 exit 1

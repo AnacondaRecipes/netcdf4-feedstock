@@ -7,7 +7,7 @@ fi
 export NETCDF4_DIR="${PREFIX}"
 export HDF5_DIR="${PREFIX}"
 
-${PYTHON} -m pip install \
+${PYTHON} -m pip install --no-build-isolation  \
     --no-binary :all: \
     --no-deps \
     --ignore-installed .
