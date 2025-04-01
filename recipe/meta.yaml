@@ -11,7 +11,7 @@ source:
     - patches/00_fix_win_test.patch  # [win]
 
 build:
-  number: 0
+  number: 1
   skip: True  # [s390x]
   entry_points:
     - ncinfo = netCDF4.utils:ncinfo
@@ -27,7 +27,7 @@ requirements:
   host:
     - python
     - pip
-    - numpy 2
+    - numpy {{ numpy }}
     - cython
     - cftime
     - hdf5  {{ hdf5 }}
@@ -36,7 +36,7 @@ requirements:
     - wheel
   run:
     - python
-    - {{ pin_compatible('numpy') }}
+    - numpy
     - cftime
     - certifi
     - hdf5
