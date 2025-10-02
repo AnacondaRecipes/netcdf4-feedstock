@@ -1,18 +1,19 @@
+{% set name = "netcdf4" %}
 {% set version = "1.7.2" %}
 
 package:
-  name: netcdf4
+  name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://github.com/Unidata/netcdf4-python/archive/v{{version}}rel.tar.gz
+  url: https://github.com/Unidata/{{ name }}-python/archive/v{{version}}rel.tar.gz
   sha256: cce7d42a83f84b6ce6288bb2fb171d5ffd294f1a1ba2650807d238ae961e9629
   patches:  # [win]
     - patches/00_fix_win_test.patch  # [win]
 
 build:
-  number: 1
-  skip: True  # [s390x]
+  number: 2
+  skip: True  # [py<38]
   entry_points:
     - ncinfo = netCDF4.utils:ncinfo
     - nc4tonc3 = netCDF4.utils:nc4tonc3
@@ -22,17 +23,18 @@ build:
 
 requirements:
   build:
+    - {{ stdlib('c') }}
     - {{ compiler('c') }}
-    - m2-patch  # [win]
   host:
     - python
     - pip
     - numpy {{ numpy }}
-    - cython
-    - cftime
+    - cython >=0.29
     - hdf5  {{ hdf5 }}
-    - libnetcdf
-    - setuptools
+    - libnetcdf {{ libnetcdf }}
+    - setuptools >=61
+    - setuptools-scm >=3.4
+    - toml
     - wheel
   run:
     - python
@@ -60,7 +62,7 @@ test:
     - cd test && python run_all.py
 
 about:
-  home: https://unidata.github.io/netcdf4-python/
+  home: https://unidata.github.io/netcdf4-python
   license: MIT
   license_family: MIT
   license_file: LICENSE
