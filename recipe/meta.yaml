@@ -18,9 +18,6 @@ build:
     - ncinfo = netCDF4.utils:ncinfo
     - nc4tonc3 = netCDF4.utils:nc4tonc3
     - nc3tonc4 = netCDF4.utils:nc3tonc4
-  ignore_run_exports:
-    - hdf5
-    - numpy
 
 requirements:
   build:
