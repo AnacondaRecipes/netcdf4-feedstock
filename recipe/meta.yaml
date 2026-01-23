@@ -39,8 +39,11 @@ requirements:
     - python
     - cftime
     - certifi
+    # Version through run exports
     - numpy
+    # Version through run exports
     - hdf5
+    # Version through run exports
     - libnetcdf
 
 test:
