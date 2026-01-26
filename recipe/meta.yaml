@@ -1,5 +1,5 @@
 {% set name = "netcdf4" %}
-{% set version = "1.7.2" %}
+{% set version = "1.7.4" %}
 
 package:
   name: {{ name }}
@@ -7,19 +7,17 @@ package:
 
 source:
   url: https://github.com/Unidata/{{ name }}-python/archive/v{{version}}rel.tar.gz
-  sha256: cce7d42a83f84b6ce6288bb2fb171d5ffd294f1a1ba2650807d238ae961e9629
+  sha256: c792977eb762fd29fa46b78f44dd8c15729fe7733c2cd2ecd34552089734ce4b
   patches:  # [win]
     - patches/00_fix_win_test.patch  # [win]
 
 build:
-  number: 2
-  skip: True  # [py<38]
+  number: 0
+  skip: True  # [py<310]
   entry_points:
     - ncinfo = netCDF4.utils:ncinfo
     - nc4tonc3 = netCDF4.utils:nc4tonc3
     - nc3tonc4 = netCDF4.utils:nc3tonc4
-  ignore_run_exports:
-    - hdf5
 
 requirements:
   build:
@@ -28,32 +26,35 @@ requirements:
   host:
     - python
     - pip
-    - numpy {{ numpy }}
     - cython >=0.29
-    - hdf5  {{ hdf5 }}
-    - libnetcdf {{ libnetcdf }}
-    - setuptools >=61
+    - numpy {{ numpy }}
+    - setuptools >=77.0.1
     - setuptools-scm >=3.4
     - toml
-    - wheel
+    - hdf5 {{ hdf5 }}
+    - libnetcdf {{ libnetcdf }}
   run:
     - python
-    - numpy
     - cftime
     - certifi
+    # Version through run exports
+    - numpy
+    # Version through run exports
     - hdf5
-    - {{ pin_compatible('libnetcdf', min_pin='x.x', max_pin='x.x') }}
+    # Version through run exports
+    - libnetcdf
 
 test:
   source_files:
     - test
-  imports:
+  imports: 
     - netCDF4
     - cftime
   requires:
-    - cython
     - pip
+    - cython
     - packaging
+    - pytest
   commands:
     - pip check
     - ncinfo -h
