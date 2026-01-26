@@ -30,6 +30,7 @@ requirements:
     - numpy {{ numpy }}
     - setuptools >=77.0.1
     - setuptools-scm >=3.4
+    - toml
     - hdf5 {{ hdf5 }}
     - libnetcdf {{ libnetcdf }}
   run:
