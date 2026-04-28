@@ -8,11 +8,12 @@ package:
 source:
   url: https://github.com/Unidata/{{ name }}-python/archive/v{{version}}rel.tar.gz
   sha256: c792977eb762fd29fa46b78f44dd8c15729fe7733c2cd2ecd34552089734ce4b
-  patches:  # [win]
+  patches:
     - patches/00_fix_win_test.patch  # [win]
+    - patches/0001-fix-dap-test.patch
 
 build:
-  number: 0
+  number: 1
   skip: True  # [py<310]
   entry_points:
     - ncinfo = netCDF4.utils:ncinfo
