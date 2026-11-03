@@ -1,5 +1,5 @@
 {% set name = "netcdf4" %}
-{% set version = "1.7.4" %}
+{% set version = "1.7.5" %}
 
 package:
   name: {{ name }}
@@ -7,14 +7,14 @@ package:
 
 source:
   url: https://github.com/Unidata/{{ name }}-python/archive/v{{version}}rel.tar.gz
-  sha256: c792977eb762fd29fa46b78f44dd8c15729fe7733c2cd2ecd34552089734ce4b
+  sha256: 01f3556dd8d5e7d773db259f47df0a8068f6feb81dffe23edc6ef50b39c006ef
   patches:
     - patches/00_fix_win_test.patch  # [win]
     - patches/0001-fix-dap-test.patch
 
 build:
-  number: 1
-  skip: True  # [py<310]
+  number: 0
+  skip: true  # [py<311]
   entry_points:
     - ncinfo = netCDF4.utils:ncinfo
     - nc4tonc3 = netCDF4.utils:nc4tonc3
@@ -34,21 +34,24 @@ requirements:
     - toml
     - hdf5 {{ hdf5 }}
     - libnetcdf {{ libnetcdf }}
+    - numpy >=2.0.0
+    - mpi4py
   run:
     - python
     - cftime
     - certifi
     # Version through run exports
-    - numpy
+    - numpy >=1.23.2
     # Version through run exports
     - hdf5
     # Version through run exports
     - libnetcdf
+    - packaging
 
 test:
   source_files:
     - test
-  imports: 
+  imports:
     - netCDF4
     - cftime
   requires:
@@ -70,9 +73,9 @@ about:
   license_file: LICENSE
   summary: netcdf4-python is a Python interface to the netCDF C library.
   description: |
-    netCDF version 4 has many features not found in earlier versions of the library and is 
-    implemented on top of HDF5. This module can read and write files in both the new netCDF 4 
-    and the old netCDF 3 format, and can create files that are readable by HDF5 clients. 
+    netCDF version 4 has many features not found in earlier versions of the library and is
+    implemented on top of HDF5. This module can read and write files in both the new netCDF 4
+    and the old netCDF 3 format, and can create files that are readable by HDF5 clients.
     The API modelled after Scientific.IO.NetCDF, and should be familiar to users of that module.
   dev_url: https://github.com/Unidata/netcdf4-python
   doc_url: https://unidata.github.io/netcdf4-python
